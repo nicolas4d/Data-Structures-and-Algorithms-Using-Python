@@ -1,0 +1,89 @@
+* Chapter 3: Sets and Maps
+** 3.1 Sets
+*** - 
+    set stores unique values and represents the same structure found in
+    mathematics. It is commonly used when you need to store a collection of
+    unique values without regard to how they are stored or when you need to
+    perform various mathematical set operations on collections.
+*** 3.1.1 The Set Abstract Data Type
+    [[file:ADT/Define%20Set%20ADT.org][Define Set ADT]]
+**** Example Use
+     [[file:listing/useSet.py]]
+*** 3.1.2 Selecting a Data Structure
+    list can grow as needed, it seems ideal for storing the elements of a set
+    just as it was for the bag and it does provide for the complete
+    functionality of the ADT.
+*** 3.1.3 List-Based Implementation
+    [[file:listing/linearset.py]]
+
+    Noops are appropriate in some cases
+** 3.2 Maps
+*** -
+    maps a key to a corresponding value.
+*** 3.2.1 The Map Abstract Data Type
+    [[file:ADT/Define%20Map%20ADT.org][Define Map ADT]]
+*** 3.2.2 List-Based Implementation
+    1. use two lists, one for the keys and one for the corresponding values.
+    2. use a single list.
+    [[file:listing/linearmap.py]]
+** 3.3 Multi-Dimensional Arrays
+*** -
+    A multi-dimensional array stores a collection of data in which the
+    individual elements are accessed with multi-component subscripts.
+*** 3.3.1 The MultiArray Abstract Data Type
+    [[file:ADT/Define%20MultiArray%20ADT.org][Define MultiArray ADT]]
+*** 3.3.2 Data Organization
+**** -
+     a multi-dimensional array is actually created and stored in memory as a
+     one-dimensional array. With this organization, a multi-dimensional array is
+     simply an abstract view of a physical one-dimensional data structure.
+**** Array Storage
+     A one-dimensional array is commonly used to physically store arrays of
+     higher dimensions. 
+
+     Consider a two-dimensional array? There are two common approaches.
+     1. row-major order, the individual rows are stored sequentially, one at a
+        time, as illustrated [[file:figure/Figure%203.7:%20Physical%20storage%20of%20a%20sample%202-D%20array%20(top)%20in%20a%201-D%20array%20using%20row-major%20order%20(bottom).png][row-major order]]
+        
+     2. column-major order, the 2-D array is stored sequentially, one entire
+        column at a time, as illustrated [[file:figure/Figure%203.8:%20Physical%20storage%20of%20a%20sample%202-D%20array%20(top)%20in%20a%201-D%20array%20using%20column%20major%20order%20(bottom)..png][column major order]]
+**** Index Computation
+     \begin{equation}
+     \Large
+     index_{2}(i, j) = i * n + j
+     \end{equation}
+
+     [[file:figure/2-D%20index.png][2-D index]]
+
+     \begin{equation}
+     \Large
+     index_{3}(i_{1}, i_{2}, i_{3}) = i_{1} * (d_{2} * d_{3}) + i_{2} * d_{3} + i_{3}
+     \end{equation}
+
+     \begin{equation}
+     \Large
+     index_{4}(i_{1}, i_{2}, i_{3}, i_{4}) = 
+     i_{1} * (d_{2} * d_{3} * d_{4}) + i_{2} * (d_{3} * d_{4}) + i_{3} * d_{4} + i_{4}
+     \end{equation}
+
+     \begin{equation}
+     \Large
+     index(i_{1}, i_{2}, \ldots, i_{n}) = 
+     i_{1} * f_{1} + i_{2} * f_{2} + \ldots + i_{n-1} * f_{n-1} + i_{n} * 1
+     \end{equation}
+
+     \begin{equation}
+     \Large
+     f_{n} = 1 \;\;\;\;  and \;\;\;\;   
+     f_{j} = \prod_{k = j + 1}^{n} d_{k} \;\;\; \forall 0 < j < n
+     \end{equation}
+*** 3.3.3 Variable-Length Arguments
+    [[file:listing/Variable-LengthArguments.py]]
+*** 3.3.4 Implementing the MultiArray
+    [[file:listing/array.py]]
+** 3.4 Application: Sales Reports
+** Exercises
+   [[file:exercise/linearset.py]]
+   [[file:exercise/linearmap.py]]
+   [[file:exercise/array.py]]
+** Programming Projects

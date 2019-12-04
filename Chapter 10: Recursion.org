@@ -1,0 +1,121 @@
+* ^ 
+  Recursion is a process for solving problems by subdividing a larger problem
+  into smaller cases of the problem itself and then solving the smaller, more
+  trivial parts.
+* 10.1 Recursive Functions
+  A function that calls itself is known as a recursive function.
+
+  [[file:example/RecursiveFunctions.py]]
+* 10.2 Properties of Recursion
+** ^
+   1. A recursive solution must contain a base case.
+   2. A recursive solution must contain a recursive case.
+   3. A recursive solution must make progress toward the base case.
+** 10.2.1 Factorials
+   n! = n ∗ (n − 1) ∗ (n − 2) ∗ . . . ∗ 1
+   0! = 1
+
+   \begin{equation}
+     \Large
+     n! = 
+     \left\{
+         \begin{array}{l}
+           1 \;\;\; if \; n=0 \\
+           n*(n-1)! \;\;\; if \; n > 0
+         \end{array}
+       \right.
+   \end{equation}
+
+   [[file:listing/fact.py]]
+** 10.2.2 Recursive Call Trees
+   [[file:example/recursiveCallTree.py]]
+** 10.2.3 The Fibonacci Sequence
+   The Fibonacci sequence is a sequence of integer values in which the first two
+   values are both 1 and each subsequent value is the sum of the two previous
+   values.
+
+   \begin{equation}
+     \Large
+     fib(n) =
+     \left\{
+       \begin{array}{lll}
+         fib(n-1) + \fib(n-2) & if & n > 1 \\
+         n, & if & n = 1 \;\; or \;\; n = 0
+       \end{array}
+     \right.
+   \end{equation}
+
+   [[file:listing/fib.py]]
+* 10.3 How Recursion Works
+** 10.3.1 The Run Time Stack
+   Each time a function is called, an *activation record* is automatically
+   created in order to maintain information related to the function. One piece
+   of information is the *return address*.
+
+   The activation records also include *storage space* for the allocation of
+   local variables.
+
+   An activation record is created per function call, not on a per function
+   basis.
+
+   storing the activation records on a run time stack.
+** 10.3.2 Using a Software Stack
+   any solution that can be implemented using a stack structure can be
+   implemented with recursion, and vice versa.
+
+   [[file:listing/A brute-force approach for printing a singly linked list in
+   reverse order.py]]
+
+   [[file:listing/Using a stack to print a linked list in reverse order.py]]
+
+   [[file:listing/printList.py]]
+** 10.3.3 Tail Recursion
+   [[file:listing/tailRecursion.py]]
+
+   When the recursive call returns, the function is finished and it simply
+   returns. This is an example of tail recursion.
+* 10.4 Recursive Applications
+** 10.4.1 Recursive Binary Search
+   [[file:listing/recBinarySearch.py]]
+   O(log n)
+** 10.4.2 Towers of Hanoi
+   [[file:figure/Figure%2010.12:%20The%20Towers%20of%20Hanoi%20puzzle%20with%20five%20disks.png][The Towers of Hanoi puzzle with five disks]]
+
+   Given n disks and three poles labeled source (S), destination (D), and
+   intermediate (I), we can define the recursive operation as:
+   - Move the top n − 1 disks from pole S to pole I using pole D.
+   - Move the remaining disk from pole S to pole D.
+   - Move the n − 1 disks from pole I to pole D using pole S.
+
+     [[file:listing/Recursive solution for the Towers of Hanoi puzzle.py]]
+
+   \begin{equation}
+     \LARGE
+     2^0 + 2^1 + \dots + 2^{n-1} = \sum_{i=0}^{n - 1} 2^i
+   \end{equation}
+
+   total 2^n − 1
+
+   [[file:figure/Figure%2010.15:%20The%20recursive%20call%20tree%20for%20the%20Towers%20of%20Hanoi%20puzzle%20with%20n%20disks.png][The recursive call tree for the Towers of Hanoi puzzle with n disks.]]
+** 10.4.3 Exponential Operation
+   [[file:example/exponentialOperation.py]]
+   
+   \begin{equation}
+    \LARGE    
+     x^n =
+     \left\{
+       \begin{array}{ll}
+         1, & if\; n = 0 \\
+         (x * x)^{n/2} & if\; n\; is\; even \\
+         x * (x * x)^{n/2} & if\; n\; is\; odd\;
+       \end{array}
+     \right.
+   \end{equation}
+
+   [[file:listing/The recursive implementation of exp.py]]
+** 10.4.4 Playing Tic-Tac-Toe
+* 10.5 Application: The Eight-Queens Problem
+** 10.5.1 Solving for Four-Queens
+** 10.5.2 Designing a Solution
+* Exercises
+* Programming Projects

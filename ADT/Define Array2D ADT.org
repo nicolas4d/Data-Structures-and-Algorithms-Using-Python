@@ -1,0 +1,16 @@
+* Define Array2D ADT
+A two-dimensional array consists of a collection of elements organized into rows
+and columns. Individual elements are referenced by specifying the specific row and
+column indices (r, c), both of which start at 0.
+- Array2D( nrows, ncols ): Creates a two-dimensional array organized into rows
+  and columns. The nrows and ncols arguments indicate the size of the table. The
+  individual elements of the table are initialized to None.
+- numRows(): Returns the number of rows in the 2-D array.
+- numCols(): Returns the number of columns in the 2-D array.
+- clear( value ): Clears the array by setting each element to the given value.
+- getitem( i 1 , i 2 ): Returns the value stored in the 2-D array element at the
+  position indicated by the 2-tuple (i 1 , i 2 ), both of which must be within
+  the valid range. Accessed using the subscript operator: y = x[1,2] .
+- setitem( i 1 , i 2 , value ): Modifies the contents of the 2-D array element
+  indicated by the 2-tuple (i 1 , i 2 ) with the new value. Both indices must be
+  within the valid range. Accessed using the subscript operator: x[0,3] = y .

@@ -1,0 +1,16 @@
+* Define Stack ADT
+A stack is a data structure that stores a linear collection of items with access
+limited to a last-in first-out order. Adding and removing items is restricted to
+one end known as the top of the stack. An empty stack is one containing no
+items.
+
+- Stack(): Creates a new empty stack.
+- isEmpty(): Returns a boolean value indicating if the stack is empty.
+- length (): Returns the number of items in the stack.
+- pop(): Removes and returns the top item of the stack, if the stack is not
+  empty. Items cannot be popped from an empty stack. The next item on the stack
+  be comes the new top item.
+- peek(): Returns a reference to the item on top of a non-empty stack without
+  removing it. Peeking, which cannot be done on an empty stack, does not modify
+  the stack contents.
+- push( item ): Adds the given item to the top of the stack.

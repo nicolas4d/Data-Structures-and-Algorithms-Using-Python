@@ -1,0 +1,12 @@
+* Define Queue ADT
+  A queue is a data structure that a linear collection of items in which access
+  is restricted to a first-in first-out basis. New items are inserted at the
+  back and existing items are removed from the front. The items are maintained
+  in the order in which they are added to the structure.
+
+  - Queue(): Creates a new empty queue, which is a queue containing no items.
+  - isEmpty(): Returns a boolean value indicating whether the queue is empty.
+  - length (): Returns the number of items currently in the queue.
+  - enqueue( item ): Adds the given item to the back of the queue.
+  - dequeue(): Removes and returns the front item from the queue. An item can-
+    not be dequeued from an empty queue.

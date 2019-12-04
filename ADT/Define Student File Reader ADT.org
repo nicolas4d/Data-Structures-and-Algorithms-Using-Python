@@ -1,0 +1,21 @@
+* Define Student File Reader ADT
+A student file reader is used to extract student records from external storage.
+The five data components of the individual records are extracted and stored in a
+storage object specific for this collection of student records.
+
+- StudentFileReader( filename ): Creates a student reader instance for ex-
+  tracting student records from the given file. The type and format of the
+  file is dependent on the specific implementation.
+- open(): Opens a connection to the input source and prepares it for
+  extracting student records. If a connection cannot be opened, an
+  exception is raised.
+- close(): Closes the connection to the input source. If the connection is
+  not currently open, an exception is raised.
+- fetch Record(): Extracts the next student record from the input source and
+  returns a reference to a storage object containing the data. None is
+  returned when there are no additional records to be extracted. An
+  exception is raised if the connection to the input source was previously
+  closed.
+- fetchAll(): The same as fetchRecord(), but extracts all student records
+  (or those remaining) from the input source and returns them in a Python
+  list.

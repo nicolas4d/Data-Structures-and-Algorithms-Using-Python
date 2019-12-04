@@ -1,0 +1,30 @@
+* Define MultiArray ADT
+A multi-dimensional array consists of a collection of elements organized into
+multiple dimensions. Individual elements are referenced by specifying an
+n-tuple or a subscript of multiple components, (i 1 , i 2 , . . . i n ), one for
+each dimension of the array. All indices of the n-tuple start at zero.
+
+- MultiArray( d 1 , d 2 , . . . d n ): Creates a multi-dimensional array of
+  elements organized into n-dimensions with each element initially set to
+  None. The number of dimensions, which is specified by the number of arguments,
+  must be greater than 1. The individual arguments, all of which must be greater
+  than zero, indicate the lengths of the corresponding array dimensions. The
+  dimensions are specified from highest to lowest, where d 1 is the highest
+  possible dimension and d n is the lowest.
+- dims(): Returns the number of dimensions in the multi-dimensional array.
+- length( dim ): Returns the length of the given array dimension. The individual
+  dimensions are numbered starting from 1, where 1 represents the first, or
+  highest, dimension possible in the array. Thus, in an array with three
+  dimensions, 1 indicates the number of tables in the box, 2 is the number of
+  rows, and 3 is the number of columns.
+- clear( value ): Clears the array by setting each element to the given value.
+- getitem ( i 1 , i 2 , . . . i n ): Returns the value stored in the array at
+  the element position indicated by the n-tuple (i 1 , i 2 , . . . i n ). All of
+  the specified indices must be given and they must be within the valid range of
+  the corresponding array dimensions. Accessed using the element operator:
+  y = x[ 1, 2 ] .
+- setitem ( i 1 , i 2 , . . . i n , value ): Modifies the contents of the
+  specified array element to contain the given value. The element is specified
+  by the n-tuple (i 1 , i 2 , . . . i n ). All of the subscript components must
+  be given and they must be within the valid range of the corresponding array
+  dimensions. Accessed using the element operator: x[ 1, 2 ] = y

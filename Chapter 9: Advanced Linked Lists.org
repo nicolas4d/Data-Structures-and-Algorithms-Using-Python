@@ -1,0 +1,58 @@
+* 9.1 The Doubly Linked List
+** 9.1.1 Organization
+   doubly linked list, each node contains not only the data component and a
+   link to the next node as in the singly linked list, but also a second link
+   that points to the preceding node.
+
+   [[file:listing/Storage class for a doubly linked list node.py]]
+** 9.1.2 List Operations
+*** Traversals
+    [[file:listing/Traversing a doubly linked list in reverse order.py]]
+    O(n)
+*** Searching
+    [[file:listing/Probing a doubly linked list.py]]
+    O(n)
+*** Adding Nodes
+    [[file:listing/Inserting a value into an ordered doubly linked list.py]]
+*** summary
+    [[file:exercise/dlist.py]]
+* 9.2 The Circular Linked List
+** ^
+   circular linked list in which the nodes form a continuous circle.
+** 9.2.1 Organization
+   next field of the last node links to the first, and in the doubly linked
+   version, the prev field of the first node links to the last.
+
+   [[file:figure/Figure%209.6:%20Examples%20of%20circular%20linked%20lists.png][Figure 9.6: Examples of circular linked lists.]]
+** 9.2.2 List Operations
+*** Traversals
+    [[file:listing/Traversing a circular linked list.py]]
+*** Searching
+    [[file:listing/Searching a circular linked list.py]]
+*** Adding Nodes
+    [[file:listing/Inserting a node into an ordered circular linked list.py]]
+*** Removing Nodes
+* 9.3 Multi-Linked Lists
+** ^
+   multi-linked list is one in which each node contains multiple link fields
+   which are used to create multiple chains within the same collection of
+   nodes.
+** 9.3.1 Multiple Chains
+   [[file:listing/The node class for a multi-linked list.py]]
+** 9.3.2 The Sparse Matrix
+   [[file:figure/Figure%209.12:%20A%20multi-linked%20list%20implementation%20of%20the%20sparse%20matrix%20from%20Figure%204.5.png][A multi-linked list implementation of the sparse matrix]]
+
+   [[file:listing/The multi-linked nodes for implementing the Sparse Matrix
+   ADT.py]]
+* 9.4 Complex Iterators
+  [[file:listing/An iterator for the Sparse Matrix ADT implemented using a
+  multi-linked list.py]]
+* 9.5 Application: Text Editor
+** 9.5.1 Typical Editor Operations
+** 9.5.2 The Edit Buffer ADT
+** 9.5.3 Implementation
+* Exercises
+** 9.1
+[[file:exercise/dlist.py]]
+
+* Programming Projects

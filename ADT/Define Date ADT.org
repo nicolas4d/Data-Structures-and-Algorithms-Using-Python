@@ -1,0 +1,26 @@
+** Define Date ADT
+A date represents a single day in the proleptic Gregorian calendar in which the
+first day starts on November 24, 4713 BC.
+- Date( month, day, year ): Creates a new Date instance initialized to
+  the given Gregorian date which must be valid. Year 1 BC and earlier
+  are indicated by negative year components.
+- day(): Returns the Gregorian day number of this date.
+- month(): Returns the Gregorian month number of this date.
+- year(): Returns the Gregorian year of this date.
+- monthName(): Returns the Gregorian month name of this date.
+- dayOfWeek(): Returns the day of the week as a number between 0 and 6
+  with 0 representing Monday and 6 representing Sunday.
+- numDays( otherDate ): Returns the number of days as a positive
+  integer between this date and the otherDate.
+- isLeapYear(): Determines if this date falls in a leap year and
+  returns the appropriate boolean value.
+- advanceBy( days ): Advances the date by the given number of
+  days. The date is incremented if days is positive and decremented if
+  days is negative. The date is capped to November 24, 4714 BC, if
+  necessary.
+- comparable ( otherDate ): Compares this date to the otherDate to
+  determine their logical ordering. This comparison can be done
+  using any of the logical operators <, <=, >, >=, ==, != .
+- toString (): Returns a string representing the Gregorian date in the
+  format mm/dd/yyyy . Implemented as the Python operator that is
+  automatically called via the str() constructor.

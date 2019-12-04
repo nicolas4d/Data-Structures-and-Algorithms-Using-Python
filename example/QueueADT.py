@@ -1,0 +1,6 @@
+Q = Queue()
+Q.enqueue( 28 )
+Q.enqueue( 19 )
+Q.enqueue( 45 )
+Q.enqueue( 13 )
+Q.enqueue( 7 )

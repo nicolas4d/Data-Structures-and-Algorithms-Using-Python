@@ -1,0 +1,21 @@
+* Define Priority Queue ADT
+  A priority queue is a queue in which each item is assigned a priority and
+  items with a higher priority are removed before those with a lower priority,
+  irrespective of when they were added. Integer values are used for the
+  priorities with a smaller integer value having a higher priority. A bounded
+  priority queue restricts the priorities to the integer values between zero and
+  a predefined upper limit whereas an unbounded priority queue places no limits
+  on the range of priorities.
+
+  - PriorityQueue(): Creates a new empty unbounded priority queue.
+  - BPriorityQueue( numLevels ): Creates a new empty bounded priority queue with
+    priority levels in the range from 0 to (numLevels - 1).
+  - isEmpty(): Returns a boolean value indicating whether the queue is empty.
+  - length (): Returns the number of items currently in the queue.
+  - enqueue( item, priority ): Adds the given item to the queue by inserting it
+    in the proper position based on the given priority. The priority value must
+    be within the legal range when using a bounded priority queue.
+  - dequeue(): Removes and returns the front item from the queue, which is the
+    item with the highest priority. The associated priority value is discarded.
+    If two items have the same priority, then those items are removed in a FIFO
+    Order. An item cannot be dequeued from an empty queue.

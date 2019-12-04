@@ -1,0 +1,256 @@
+* Chapter 4: Algorithm Analysis
+** -
+   How are we to determine which solution(algorithm) is the most efficient for a
+   given problem?
+   - One approach is to measure the execution time.
+     - The execution time is dependent on several factors.
+       1. the amount of data that must be processed directly affects the
+          execution time.
+       2. the execution times can vary depending on the type of hardware and the
+          time of day a computer is used.
+       3. the choice of programming language and compiler used to implement an
+          algorithm can also influence the execution time.
+** 4.1 Complexity Analysis
+*** -
+    [[file:listing/complexityAnalysis-1.py]] total of $$ 2n^2 $$ additions
+    [[file:listing/complexityAnalysis-1.py]] total of $$ n^2 + n $$ additions.
+
+    the difference in execution times will not be significant. The reason is that
+    both algorithms execute on the same order of magnitude, namely $$ n^2 $$
+
+    [[file:figure/Table%204.1:%20Growth%20rate%20comparisons%20for%20different%20input%20sizes.png][Growth rate comparisons for different input sizes]]
+    [[file:figure/Figure%204.1:%20Graphical%20comparison%20of%20the%20growth%20rates%20from%20Table%204.1.png][Graphical comparison of the growth rates]]
+*** 4.1.1 Big-O Notation
+**** -
+     more interested in classifying an algorithm based on the *order of
+     magnitude* as applied to execution time or space requirements.
+
+     The term big-O, which is derived from the expression “on the order of,” is
+     used to specify an algorithm’s classification.
+**** Defining Big-O
+     \begin{equation}
+     \Large
+     T_2(n) = n^2 + n
+     \end{equation}
+     for some constant c, and some constant m.
+     \begin{equation}
+     \Large
+     T(n) = cf(n) \;\;\;\;\;\;\; ( n >= m ) 
+     \end{equation}
+     such an algorithm is said to have a time-complexity of, or executes on the
+     order of, f(n) relative to the number of operations it requires.
+     \begin{equation}
+     \Large
+     O(f(n))
+     \end{equation}
+
+     version 1 :
+     \begin{equation}
+     \Large
+     2n^2 <= 2n^2
+     \end{equation}
+     version 2 :
+     \begin{equation}
+     \Large
+     n^2 + n <= 2n^2
+     \end{equation}
+     when n >= 1
+
+     The big-O notation is intended to indicate an algorithm’s efficiency for
+     large values of n. There is usually little difference in the execution times
+     of algorithms when n is small.
+**** Constant of Proportionality
+     The constant of proportionality (means constant c) is only crucial when two
+     algorithms have the same f(n). It usually makes no difference when
+     comparing algorithms whose growth rates are of different magnitudes.
+
+     [[file:figure/Table%204.2:%20Numerical%20comparison%20of%20two%20sample%20algorithms.png][Numerical comparison of two sample algorithms]]
+     [[file:figure/Figure%204.2:%20Graphical%20comparison%20of%20the%20data%20from%20Table%204.2.png][Graphical comparison of the data]]
+**** Constructing T(n)
+     Instead of counting the number of logical comparisons or arithmetic
+     operations, we evaluate an algorithm by considering every operation. For
+     simplicity, we assume that each basic operation or statement, at the
+     abstract level, takes the same amount of time and, thus, each is assumed to
+     cost constant time.
+
+     \begin{equation}
+     \Large
+     T(n) = f_1(n) + f_2(n) + \ldots + f_k(n)
+     \end{equation}
+**** Choosing the Function
+     The function f(n) used to categorize a particular algorithm is chosen to be
+     the dominant term within T(n).
+     \begin{equation}
+     \Large
+     n^2 + log_2 n + 3n
+     \end{equation}
+     the term $$ n^2 $$ dominates the other terms since for n >= 3, we have
+     \begin{equation}
+     \Large
+     n^2 + log_2 n + 3n <= n^2 + n^2 + n^2
+     \end{equation}
+     \begin{equation}
+     \Large
+     n^2 + log_2 n + 3n <= 3n^2
+     \end{equation}
+**** Classes of Algorithms
+     [[file:figure/Table%204.3:%20Common%20big-O%20functions%20listed%20from%20smallest%20to%20largest%20order%20of%20magnitude.png][Common big-O functions listed from smallest to largest order of magnitude]]
+     [[file:figure/Figure%204.4:%20Growth%20rates%20of%20the%20common%20time-complexity%20functions.png][Growth rates of the common time-complexity functions]]
+*** 4.1.2 Evaluating Python Code
+**** - 
+     assume that basic operations only require constant time. But what exactly
+     is a basic operation? basic operations include statements and function
+     calls whose execution time does not depend on the specific values of the
+     data that is used or manipulated by the given instruction.
+     #+begin_src python
+    x = 5
+    y = x
+    z = x + y * 6
+    done = x > 0 and x < 100
+     #+end_src
+**** Linear Time Examples
+     [[file:example/linearTimeExamples.py]]
+     T(n) = n * 1 for a result of O(n).
+
+     [[file:example/linearTimeExamples-2.py]]
+     T (n) = n + n for a result of O(n).
+**** Quadratic Time Examples
+     [[file:example/quadraticTimeExamples.py]]
+     T(n) = n * n, resulting in a time of O(n^2).
+
+     [[file:example/quadraticTimeExamples-0.py]]
+     which has a time-complexity of O(n).
+
+     [[file:example/quadraticTimeExamples-1.py]]
+     \begin{equation}
+     \Large
+     T(n) = \frac {n(n+1)} {2} = \frac {n^2 + n} {2}
+     \end{equation}
+     which results in a quadratic time of O(n 2 )
+**** Logarithmic Time Examples
+     [[file:example/logarithmicTimeExamples.py]]
+     (16, 8, 4, 2, 1)
+     \begin{equation}
+     \Large
+     log_ 2 16 + 1
+     \end{equation}
+     \begin{equation}
+       \Large
+       log_2 n + 1
+     \end{equation}
+     O(log n)
+
+     [[file:example/logarithmicTimeExamples-0.py]]
+     O(n log n)
+**** Different Cases 
+     Some algorithms can have run times that are different orders of magnitude
+     for different sets of inputs of the same size. These algorithms can be
+     evaluated for their best, worst, and average cases.
+
+     [[file:example/differentCases.py]]
+     - worst case :: O(n) time.
+                     - 
+                       L = [ 72, 4, 90, 56, 12, 67, 43, 17, 2, 86, 33 ]
+                       p = findNeg( L )
+     - best case :: requires O(1) time.
+                    - 
+                    L = [ -12, 50, 4, 67, 39, 22, 43, 2, 17, 28 ]
+                    p = findNeg( L )
+     - average case ::  n/2
+
+     In general, we are more interested in the *worst case* time-complexity of
+     an algorithm as it provides an upper bound over all possible inputs. In
+     addition, we can compare the worst case run times of different
+     implementations of an algorithm to determine which is the most efficient
+     for any input.
+** 4.2 Evaluating the Python List
+*** -
+    [[file:table/Table%204.4:%20Worst%20case%20time-complexities%20for%20the%20more%20common%20list%20operations.png.png][Worst case time-complexities for the more common list operations.]]
+*** List Traversal
+    #+begin_src python
+sum = 0
+for value in valueList :
+    sum = sum + value
+    #+end_src
+    requires O(n) time
+
+    it can actually be higher if any operations performed during each iteration
+    are worse than constant time, unlike this example.
+*** List Allocation
+    #+begin_src python
+temp = list()
+valueList = [ 0 ] * n
+    #+end_src
+    1. O(1).
+    2. The actual allocation of the n elements can be done in constant time, but
+       the initialization of the individual elements requires a list traversal.
+       requires O(n) time.
+*** Appending to a List
+    - available capacity :: O(1)
+    - no available slots :: T(n) = 1 + 1 + n and a worst case time of O(n)
+*** Extending a List
+    - sufficient capacity :: O(n)
+    - not sufficient capacity :: T (n) = n + n = 2n or O(n)
+*** Inserting and Removing Items
+    insering :
+    - capacity :
+      - end :: O(1)
+      - start :: O(n)
+    - no capacity :
+      - end :: O(n)
+      - start :: O(n)
+
+    removing :
+    - end :: O(1)
+    - start :: O(n) 
+** 4.3 Amortized Cost
+   n is a power of 2.
+   #+begin_src python
+L = list()
+for i in range( 1, n+1 ) :
+    L.append( i )
+   #+end_src
+
+   *aggregate method* computes the total from the individual operations.
+
+   [[file:table/Table%204.5:%20Using%20the%20aggregate%20method%20to%20compute%20the%20total%20run%20time%20for%20a%20sequence%20of%2016%20append%20operations.png][Using the aggregate method]]
+
+   T(n) = 2n
+
+   *Amortized analysis* T(n)=2n/n or O(1) 
+
+   Amortized analysis is the process of computing the time-complexity for a
+   sequence of operations by computing the average cost over the entire
+   sequence. For this technique to be applied, the cost per operation must be
+   known and it must vary in which many of the operations in the sequence
+   contribute little cost and only a few operations contribute a high cost to
+   the overall time.
+
+   - long :: few instances require O(n), while many of them are O(1). O(1).
+   - single :: O(n)
+** 4.4 Evaluating the Set ADT
+*** -
+    [[file:table/Table%204.6:%20Time-complexities%20for%20the%20Set%20ADT%20implementation%20using%20an%20unsorted%20list.png][Time-complexities for the Set]]
+** 4.5 Application: The Sparse Matrix
+*** 4.5.1 List-Based Implementation
+*** 4.5.2 Efficiency Analysis
+** Exercises
+*** 4.1
+    \begin{equation}
+    12n^6 \;\;\;\;
+    4^n \;\;\;\;
+    5^2 \;\;\;\;
+    n log_2 n \;\;\;\;
+    log_4 n \;\;\;\;
+    k log_2 n \;\;\;\;
+    40 log_2 n    
+    \end{equation}
+*** 4.2
+    1. O(n^2)
+    2. O(n)
+    3. O(n log n)
+    4. O(n^2)
+    5. O(n^8)
+    6. O(kn)
+    7. O(k log n)
+** Programming Projects

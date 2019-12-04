@@ -1,0 +1,64 @@
+* Chapter 8: Queues
+** 8.1 The Queue ADT
+   A queue is a specialized list with a limited number of operations in which
+   items can only be added to one end and removed from the other.first-in,
+   first-out (FIFO).
+
+   [[file:ADT/Define%20Queue%20ADT.org][Define Queue ADT]]
+
+   [[file:example/QueueADT.py]]
+** 8.2 Implementing the Queue
+*** -
+    There are three common approaches to implementing a queue: 
+    - using a vector
+    - a linked list
+    - an array.
+*** 8.2.1 Using a Python List
+    [[file:listing/pylistqueue.py]]
+*** 8.2.2 Using a Circular Array
+**** -
+     A circular array is simply an array viewed as a circle instead of a line.
+
+     used with applications that only require small-capacity queues and allows
+     for the specification of a maximum size.
+**** Data Organization
+     define variables:
+     - front
+     - back
+     - count
+**** Queue Implementation
+     [[file:listing/arrayqueue.py]]
+**** Run Time Analysis
+     The operations all have a worst case time-complexity of O(1).
+*** 8.2.3 Using a Linked List
+    [[file:listing/llistqueue.py]]
+** 8.3 Priority Queues
+*** 8.3.1 The Priority Queue ADT
+    - bounded priority queue :: assumes a small limited range of p priorities
+         over the interval of integers [0 . . . p).
+    - unbounded priority queue ::  places no limit on the range of integer
+         values that can be used as priorities.
+
+    [[file:ADT/Define%20Priority%20Queue%20ADT.org][Define Priority Queue ADT]]
+
+    [[file:example/priorityQueueADT.py]]
+*** 8.3.2 Implementation: Unbounded Priority Queue
+**** Python List Implementation
+     [[file:listing/priorityq.py]]
+**** Linked List Implementation
+     The dequeue operation, requires O(n) time.
+     others O(1).
+*** 8.3.3 Implementation: Bounded Priority Queue
+    [[file:listing/bpriorityq.py]]
+** 8.4 Application: Computer Simulations
+*** 8.4.1 Airline Ticket Counter
+*** 8.4.2 Implementation
+** Exercises
+*** 8.2
+    [[file:exercise/8.2.py]]
+*** 8.3
+    [[file:exercise/8.3.py]]
+*** 8.6
+    [[file:exercise/pylistqueue.py]]
+    [[file:exercise/llistqueue.Pu]]
+** Programming Projects

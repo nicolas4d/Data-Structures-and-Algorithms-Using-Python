@@ -1,0 +1,66 @@
+* Chapter 7: Stacks
+** 7.1 The Stack ADT
+   A stack is used to store data such that the last item inserted is the first
+   item removed. *last-in first-out (LIFO)*
+   [[file:ADT/Define%20Stack%20ADT.org][Define Stack ADT]]
+   [[file:example/theStackADT.eopy]]
+** 7.2 Implementing the Stack
+*** 7.2.1 Using a Python List
+    [[file:listing/pyliststack.py]]
+*** 7.2.2 Using a Linked List
+    [[file:listing/lliststack.py]]
+    All of the operations are O(1)
+** 7.3 Stack Applications
+*** 7.3.1 Balanced Delimiters
+    [[file:listing/isValidSource.py]]
+    [[file:listing/isValidSource.cpp]]
+*** 7.3.2 Evaluating Postfix Expressions
+**** Converting from Infix to Postfix
+     - infix :: ((A * B) + (C / D))
+     - postfix :: A B * C D / +
+
+     - infix :: A * (B + C) / D
+     - process :: ((A * (B + C)) / D)
+     - postfix :: A B C + * D /
+**** Postfix Evaluation Algorithm
+** 7.4 Application: Solving a Maze
+*** 7.4.1 Backtracking
+*** 7.4.2 Designing a Solution
+*** 7.4.3 The Maze ADT
+*** 7.4.4 Implementation
+** Exercises
+*** 7.1 
+    [[file:exercise/7.1.py]]
+*** 7.2
+    [[file:exercise/7.2.py]]
+*** 7.3 and 7.4
+    - (A * B) / C
+    - aAB**C/
+
+    - A - (B * C) + D / E
+    - ABC*-DE/+
+
+    - (X - Y) + (W * Z) / V
+    - XY-WZ*Y/+
+    
+    - V * W * X + Y - Z
+    - VW*X*Y+Z-
+
+    - A / B * C - D + E
+    - AB/C*D-E+ 
+*** 7.6
+    - init :: O(1)
+    - isEmpty :: O(1)
+    - len :: O(1)
+    - peek :: O(1)
+    - pop :: worst and best O(n)
+    - push :: worst and best O(n) 
+*** 7.7
+    [[file:listing/lliststack.py]]
+*** 7.8
+    No.
+    pop and push and peek time-complexities are becomes O(n).
+*** 7.9
+    [[file:listing/isValidSource.py]]
+    O(n)
+** Programming Projects

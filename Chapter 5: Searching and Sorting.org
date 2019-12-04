@@ -1,0 +1,111 @@
+* Chapter 5: Searching and Sorting
+** -
+   Searching and sorting are two of the most common applications found in
+   computer science.
+** 5.1 Searching
+*** -
+    Searching is the process of selecting particular information from a
+    collection of data based on specific criteria.
+
+    - sequence search :: involves finding an item within a sequence using a
+         search key to identify the specific item.
+    - search key :: a unique value used to identify the data elements of a
+                    collection. 
+    - compound key :: a key may consist of multiple components.
+*** 5.1.1 The Linear Search
+**** -
+     The simplest solution to the sequence search problem is the sequential or
+     linear search algorithm.
+     #+begin_src python
+if key in theArray :
+    print( "The key is in the array." )
+else :
+    print( "The key is not in the array." )
+     #+end_src
+**** Finding a Specific Item
+     [[file:listing/linearSearch.py]]
+     linear search has a worst case time of O(n)
+**** Searching a Sorted Sequence
+     [[file:listing/sortedLinearSearch.py]]
+     O(n)
+**** Finding the Smallest Value
+     [[file:listing/findSmallest.py]]
+     O(n)
+*** 5.1.2 The Binary Search
+**** -
+     - divide and conquer strategy :: which entails dividing a larger problem
+          into smaller parts and conquering the smaller part.
+**** Algorithm Description 
+     The algorithm starts by examining the middle item of the sorted sequence.
+
+     [[file:listing/binarySearch.py]]
+**** Run Time Analysis
+     worst case time-complexity of O(log n).
+** 5.2 Sorting
+*** - 
+    - Sorting the process of arranging or ordering a collection of items such
+      that each item and its successor satisfy a prescribed relationship. the
+      ordering of the items is based on the value of a sort key.
+*** 5.2.1 Bubble Sort
+    bubble sort algorithm, which rearranges the values by iterating over the
+    list multiple times, causing larger values to bubble to the top or end of
+    the list.
+
+    [[file:listing/bubbleSort.py]]
+    - best :: O(n)
+    - worst :: O(n^2 ).
+**** references
+     https://baike.baidu.com/item/冒泡排序/4602306?fr=kg_qa
+*** 5.2.2 Selection Sort
+    [[file:listing/selectionSort.py]]
+
+    The selection sort, which makes n−1 passes over the array to reposition n−1
+    values, is also O(n^2). The difference between the selection and bubble
+    sorts is that the selection sort reduces the number of swaps required to
+    sort the list to O(n).
+*** 5.2.3 Insertion Sort
+    [[file:listing/insertionSort.py]]
+    - best :: O(n)
+    - worst :: O(n^2) 
+** 5.3 Working with Sorted Lists
+*** -
+    The efficiency of some algorithms can be improved when working with
+    sequences containing sorted values.
+*** 5.3.1 Maintaining a Sorted List
+    [[file:listing/findSortedPosition.py]]
+    O(log n)
+*** 5.3.2 Merging Sorted Lists
+    [[file:listing/mergeSortedLists.py]]
+**** Run Time Analysis
+     O(n)
+** 5.4 The Set ADT Revisited
+*** 5.4.1 A Sorted List Implementation
+    [[file:listing/binaryset.py]]
+*** 5.4.2 Comparing the Implementations
+    [[file:table/Table%205.1.png][Comparison of the two Set ADT]]
+** TODO Exercises
+*** 5.1
+    O(k^t h)
+    O(1)
+*** 5.2
+    O(log n)
+*** 5.3
+    [[file:listing/binaryset.py]]
+    - worst : O(n) list insert worst is O(n)
+    - best : O(1) element in the list
+*** 5.4
+    [[file:listing/linearmap.py]]
+*** 5.5
+    [[file:exercise/findSortedPosition.py]]
+    worst case :: all is the tartget. then search untill index 0. this is not
+    chage the binary search essence. so O(log n)
+*** 5.6 
+    [[file:exercise/findAllNeg.py]]
+    worst case :: all neg, O(n)
+*** 5.7 
+    [[file:exercise/binaryset.py]]
+*** 5.8
+    [[file:exercise/bubbleSort.py]]
+    [[file:exercise/selectionSort.py]]
+    [[file:exercise/insertionSort.py]]
+** Programming Projects 

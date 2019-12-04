@@ -1,0 +1,159 @@
+* Chapter 1: Abstract Data Types
+** - 
+   An algorithm is a sequence of clear and precise step-by-step
+   instructions for solving a problem in a finite amount of time.
+** 1.1 Introduction
+*** -
+    - type :: refer to a collection of values
+    - data type :: refer to a given type along with a collection of
+                   operations for manipulating values of the given type.
+
+    data type:
+    - primitives
+      - simple data types
+      - complex data types
+        - user-defined types
+*** 1.1.1 Abstractions
+    An abstraction is a mechanism for separating the properties of an
+    object and restricting the focus to those relevant in the current
+    context.
+
+    - Procedural abstraction is the use of a function or method knowing
+      what it does but ignoring how it’s accomplished.
+    - Data abstraction is the separation of the properties of a data type
+      (its values and operations) from the implementation of that data
+      type.
+
+    [[file:figure/Figure%201.1:%20Levels%20of%20abstraction%20used%20with%20integer%20arithmetic.png][Figure 1.1: Levels of abstraction used with integer arithmetic.]]
+*** 1.1.2 Abstract Data Types
+    An abstract data type (or ADT ) is a programmer-defined data type that
+    specifies a set of data values and a collection of well-defined
+    operations that can be performed on those values.
+
+    User programs interact with instances of the ADT by invoking one of the
+    several operations defined by its interface. The set of operations can
+    be grouped into four categories:
+    - Constructors :: Create and initialize new instances of the ADT.
+    - Accessors :: Return data contained in an instance without modifying it.
+    - Mutators :: Modify the contents of an ADT instance.
+    - Iterators :: Process individual data components sequentially.
+
+    [[file:figure/Figure%201.2:%20Separating%20the%20ADT%20definition%20from%20its%20implementation.png][Figure 1.2: Separating the ADT definition from its implementation.]]
+
+    There are several advantages of working with abstract data types and
+    focusing on the “what” instead of the “how.”
+    - We can focus on solving the problem at hand instead of getting
+      bogged down in the implementation details.
+    - We can reduce logical errors that can occur from accidental misuse
+      of storage structures and data types by preventing direct access to
+      the implementation.
+    - The implementation of the abstract data type can be changed without
+      having to modify the program code that uses the ADT.
+    - It’s easier to manage and divide larger programs into smaller
+      modules, allowing different members of a team to work on the
+      separate modules.
+*** 1.1.3 Data Structures
+    - simple ADT
+    - complex ADTs
+      - use *particular data structure*
+*** 1.1.4 General Definitions
+    - collection :: is a group of values with no implied organization or
+                    relationship between the individual values.
+    - container :: is any data structure or abstract data type that stores
+                   and organizes a collection.
+    - sequence :: is a container in which the elements are arranged in
+                  linear order from front to back, with each element
+                  accessible by position.
+    - sorted sequence :: is one in which the position of the elements is
+         based on a prescribed relationship between each element and its
+         successor.
+
+    a sequence is a list, but a list is not necessarily a sequence since
+    there is no requirement that a list provide access to the elements by
+    position.
+
+    list:
+    - general list
+    - list structure
+** 1.2 The Date Abstract Data Type
+*** -
+    An abstract data type is defined by specifying the domain of the data
+    elements that compose the ADT and the set of operations that can be
+    performed on that domain.
+*** 1.2.1 Defining the ADT
+    The official first date of the Gregorian calendar is Friday, October
+    15, 1582.
+
+    The proleptic Gregorian calendar first date on November 24, 4713 BC.
+
+    [[file:ADT/Define%20Date%20ADT.org][Define Date ADT]]
+*** 1.2.2 Using the ADT
+    [[file:listing/checkdates.py]]
+*** 1.2.3 Preconditions and Postconditions
+    - precondition indicates the condition or state of the ADT instance
+      and inputs before the operation can be performed. 
+    - postcondition indicates the result or ending state of the ADT
+      instance after the operation is performed.
+*** 1.2.4 Implementing the ADT
+**** Date Representations
+     [[file:listing/date.py][date.py]]
+     https://en.wikipedia.org/wiki/Julian_day#Julian_day_number_calculation
+** 1.3 Bags
+*** 1.3.1 The Bag Abstract Data Type
+    [[file:Define%20Bag%20ADT.org][Define Bag ADT]]
+**** example
+     [[file:listing/Bags.py]]
+     [[file:listing/checkdates2.py]]
+**** Why a Bag ADT?
+     [[1.1.2 Abstract Data Types]]
+*** 1.3.2 Selecting a Data Structure
+    criteria:
+    1. Does the data structure provide for the storage requirements as
+       specified by the domain of the ADT?
+    2. Does the data structure provide the necessary data access and
+       manipulation functionality to fully implement the ADT?
+    3. Does the data structure lend itself to an efficient implementation of
+       the operations?
+*** 1.3.3 List-Based Implementation
+    [[file:listing/linearbag.py]]
+** 1.4 Iterators
+*** -
+    An iterator is an object that provides a mechanism for performing generic
+    traversals through a container without having to expose the underlying
+    implementation.
+*** 1.4.1 Designing an Iterator
+    To use Python’s traversal mechanism with our own abstract data types, we
+    must define an iterator class, which is a class in Python containing two
+    special methods, __iter__ and __next__ .
+
+    The __iter__ method simply returns a reference to the object
+    itself and is always implemented to do so.
+
+    The __next__ method is called to return the next item in the container.
+    If there are no additional items, the method must raise a
+    StopIteration exception that flags the for loop to terminate.
+*** 1.4.2 Using Iterators
+    #+BEGIN_SRC python
+    for item in bag :
+        print( item )
+    #+END_SRC
+
+    1. Python automatically calls the iter method on the bag object to
+       create an iterator object.
+    2. The for loop then automatically calls the next method on the
+       iterator object to access the next item in the container
+
+    illustrates how Python actually performs the iteration when a for loop
+    is used with an instance of the Bag class:
+    [[file:listing/iteratorFor.py]]
+** 1.5 Application: Student Records
+*** 1.5.1 Designing a Solution
+*** 1.5.2 Implementation
+    [[file:Define%20Student%20File%20Reader%20ADT.org][Define Student File Reader ADT]]
+**** Creating the Report
+     [[file:listing/studentreport.py]]
+**** Storage Class
+     [[file:listing/studentfile.py]]
+** Exercises
+   [[file:exercise/date.py]]
+** Programming Projects

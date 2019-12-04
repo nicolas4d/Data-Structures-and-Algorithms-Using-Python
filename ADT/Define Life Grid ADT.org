@@ -1,0 +1,27 @@
+** Define Life Grid ATD 
+A life grid is used to represent and store the area in the game of Life that
+contains organisms. The grid contains a rectangular grouping of cells of a
+finite size divided into rows and columns. The individual cells, which can be
+alive or dead, are referenced by row and column indices, both of which start at
+zero.
+
+- LifeGrid( nrows, ncols ): Creates a new game grid consisting of nrows and
+  ncols. All cells in the grid are set to dead.
+- numRows(): Returns the number rows in the grid.
+- numCols(): Returns the number of columns in the grid.
+- configure( coordList ): Configures the grid for evolving the next genera-
+  tion. The coordList argument is a sequence of 2-tuples with each tuple
+  representing the coordinates (r, c) of the cells to be set as alive. All
+  remaining cells are cleared or set to dead.
+- clearCell( row, col ): Clears the individual cell (row, col) and sets it to
+  dead. The cell indices must be within the valid range of the grid.
+- setCell( row, col ): Sets the indicated cell (row, col) to be alive. The cell
+  indices must be within the valid range of the grid.
+- isLiveCell( row,col ): Returns a boolean value indicating if the given cell
+  (row, col) contains a live organism. The cell indices must be within the valid
+  range of the grid.
+- numLiveNeighbors( row, col ): Returns the number of live neighbors for the
+  given cell (row, col). The neighbors of a cell include all of the cells
+  immediately surrounding it in all directions. For the cells along the border
+  of the grid, the neighbors that fall outside the grid are assumed to be dead.
+  The cell indices must be within the valid range of the grid.

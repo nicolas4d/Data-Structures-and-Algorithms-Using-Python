@@ -1,0 +1,105 @@
+* Chapter 6: Linked Structures
+** -
+   disadvantages in the use of the array and Python list:
+   1. insertion and deletion operations typically require items to be shifted to
+      make room or close a gap.
+   2. the size of an array is fixed and cannot change.
+
+   linked list:
+   1. improves on the construction and management of an array Python list by
+      requiring smaller memory allocations.
+   2. no element shifts for insertions and deletions.
+   3. But it does eliminate the constant time direct element access.
+** 6.1 Introduction
+   [[file:example/linkedStructuresIntroduction.py]]
+
+   - linked structure :: contains a collection of objects called nodes
+   - node :: contains data and at least one reference or *link* to another node.
+   - linked list :: a linked structure in which the nodes are connected in
+                    sequence to form a linear list.
+   - tail node :: last node in the list.
+   - first node :: head pointer, or head reference.
+
+   Linked structures are built using fundamental components provided by the
+   programming language, namely reference variables and objects.
+
+   - External References :: point to linked structure.
+** 6.2 The Singly Linked List
+*** -
+    A singly linked list is a linked list in which each node contains a single
+    link field and allows for a complete traversal from a distinctive first node
+    to the last.
+*** 6.2.1 Traversing the Nodes
+    [[file:listing/TraversingNodes.py]]
+    O(n)
+*** 6.2.2 Searching for a Node
+    [[file:listing/SearchingForNode.py]]
+    O(n)
+*** 6.2.3 Prepending Nodes
+    [[file:listing/PrependingNodes.py]]
+    O(1)
+*** 6.2.4 Removing Nodes
+    [[file:listing/removeingNodes.py]]
+    O(n)
+** 6.3 The Bag ADT Revisited
+*** -
+    [[file:listing/llistbag.py]]
+*** 6.3.1 A Linked List Implementation
+*** 6.3.2 Comparing Implementations
+    [[file:table/Table%206.1:%20Comparing%20the%20Bag%20ADT%20implemented%20using%20a%20Python%20list%20and%20a%20linked%20list.png][Comparing the Bag ADT implemented using a Python list and a linked list]]
+
+    advantages and disadvantages:
+    - linked list is typically a better choice for those applications involving
+      large amounts of dynamic data, data that changes quite often. If there
+      will be a large number of insertions and/or deletions, the linked
+      structure provides a fast implementation since large amounts of data do
+      not have to be shifted as is required by the Python list.
+    - Python list is a better choice in those applications where individual
+      elements must be accessed by index. This can be simulated with a linked
+      list, but it requires a traversal of the list, resulting in a linear
+      operation whereas the Python list only requires constant time.
+*** 6.3.3 Linked List Iterators
+** 6.4 More Ways to Build a Linked List
+*** 6.4.1 Using a Tail Reference
+**** -
+     [[file:exercise/usingTailReference.py]]
+**** Appending Nodes 
+     [[file:listing/Appending a node to a linked list using a tail reference.py]]
+**** Removing Nodes
+     [[file:listing/Removing a node from a linked list using a tail reference.py]]
+*** 6.4.2 The Sorted Linked List
+**** Linear Search
+     [[file:listing/Searching a sorted linked list.py]]
+**** Inserting Nodes
+     [[file:listing/Inserting a value into a sorted list.py]]
+**** Traversing and Deleting
+** 6.5 The Sparse Matrix Revisited
+*** -
+    a sparse matrix is a matrix containing a large number of zero elements.
+    
+    [[file:figure/Figure%206.15:%20A%20sparse%20matrix%20implemented%20as%20an%20array%20of%20sorted%20linked%20lists.png][A sparse matrix implemented as an array of sorted linked lists]]
+*** 6.5.1 An Array of Linked Lists Implementation
+    [[file:listing/llistsparse.py]]
+**** Matrix Addition
+*** 6.5.2 Comparing the Implementations
+    - k :: total number of non-zero elements.
+    - n :: the number of columns.
+
+    [[file:table/Table%206.2:%20Comparison%20of%20the%20Matrix%20and%20Sparse%20Matrix%20ADT%20implementations.png][Comparison of the Matrix and Sparse Matrix ADT implementations]]
+** 6.6 Application: Polynomials
+*** 6.6.1 Polynomial Operations
+*** 6.6.2 The Polynomial ADT
+*** 6.6.3 Implementation
+** Exercises
+*** 6.1
+    [[FileIO:exercise/removeAllNodes.py]]
+    [[file:exercise/splitInHalf.py]]
+*** 6.2
+    [[file:exercise/linkedStructure.py]]
+*** 6.3
+    [[file:exercise/6.3.py]]
+*** 6.4
+    [[file:exercise/6.4.py]]
+*** 6.5
+    [[file:exercise/llistsparse.py]]
+** Programming Projects

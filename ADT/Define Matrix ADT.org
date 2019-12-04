@@ -1,0 +1,25 @@
+* Define Matrix ADT
+A matrix is a collection of scalar values arranged in rows and columns as a
+rectangular grid of a fixed size. The elements of the matrix can be accessed
+by specifying a given row and column index with indices starting at 0.
+- Matrix( nrows, ncols ): Creates a new matrix containing nrows and ncols with
+  each element initialized to 0.
+- numRows(): Returns the number of rows in the matrix.
+- numCols(): Returns the number of columns in the matrix.
+- getitem ( row, col ): Returns the value stored in the given matrix element.
+  Both row and col must be within the valid range.
+- setitem ( row, col, scalar ): Sets the matrix element at the given row and col
+  to scalar. The element indices must be within the valid range.
+- scaleBy( scalar ): Multiplies each element of the matrix by the given scalar
+  value. The matrix is modified by this operation.
+- transpose(): Returns a new matrix that is the transpose of this matrix.
+- add ( rhsMatrix ): Creates and returns a new matrix that is the result of
+  adding this matrix to the given rhsMatrix. The size of the two matrices must
+  be the same.
+- subtract ( rhsMatrix ): The same as the add() operation but subtracts the two
+  matrices.
+- multiply ( rhsMatrix ): Creates and returns a new matrix that is the result of
+  multiplying this matrix to the given rhsMatrix. The two matrices must be of
+  appropriate sizes as defined for matrix multiplication.
+* variable name explain
+rhsMatrix == right-hand side Matrix
