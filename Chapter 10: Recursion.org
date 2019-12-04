@@ -3,7 +3,7 @@
   into smaller cases of the problem itself and then solving the smaller, more
   trivial parts.
 * 10.1 Recursive Functions
-  A function that calls itself is known as a recursive function.
+  A function that calls itself is a recursive function.
 
   [[file:example/RecursiveFunctions.py]]
 * 10.2 Properties of Recursion
@@ -39,7 +39,7 @@
      fib(n) =
      \left\{
        \begin{array}{lll}
-         fib(n-1) + \fib(n-2) & if & n > 1 \\
+         fib(n-1) + fib(n-2) & if & n > 1 \\
          n, & if & n = 1 \;\; or \;\; n = 0
        \end{array}
      \right.
@@ -68,12 +68,16 @@
 
    [[file:listing/Using a stack to print a linked list in reverse order.py]]
 
-   [[file:listing/printList.py]]
+   [[file:listing/printListRecursion.py]]
 ** 10.3.3 Tail Recursion
-   [[file:listing/tailRecursion.py]]
+   [[file:example/tailRecursion.py]]
 
    When the recursive call returns, the function is finished and it simply
-   returns. This is an example of tail recursion.
+   returns. This is an example of tail recursion, which occurs when a function
+   includes a single recursive call as the last statement of the function. In
+   this case, a stack is not needed to store values to be used upon the return
+   of the recursive call and thus a solution can be implemented using an
+   iterative loop instead.
 * 10.4 Recursive Applications
 ** 10.4.1 Recursive Binary Search
    [[file:listing/recBinarySearch.py]]
@@ -87,7 +91,7 @@
    - Move the remaining disk from pole S to pole D.
    - Move the n − 1 disks from pole I to pole D using pole S.
 
-     [[file:listing/Recursive solution for the Towers of Hanoi puzzle.py]]
+   [[file:listing/towersOfHanoiPuzzle.py]]
 
    \begin{equation}
      \LARGE
@@ -112,7 +116,7 @@
      \right.
    \end{equation}
 
-   [[file:listing/The recursive implementation of exp.py]]
+   [[file:listing/recursiveExp.py]]
 ** 10.4.4 Playing Tic-Tac-Toe
 * 10.5 Application: The Eight-Queens Problem
 ** 10.5.1 Solving for Four-Queens

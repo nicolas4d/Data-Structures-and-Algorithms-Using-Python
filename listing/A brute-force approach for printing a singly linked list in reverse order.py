@@ -8,10 +8,10 @@ def printListBF( head ):
     while curNode is not None :
         curNode = curNode.next
         numNodes += 1
-        # Iterate over the linked list multiple times. The first iteration
-        # prints the last item, the second iteration prints the next to last
-        # item, and so on.
 
+    # Iterate over the linked list multiple times. The first iteration
+    # prints the last item, the second iteration prints the next to last
+    # item, and so on.
     for i in range( numNodes ):
         # The temporary pointer starts from the first node each time.
         curNode = head
@@ -20,5 +20,5 @@ def printListBF( head ):
         for j in range( numNodes - 1 ):
             curNode = curNode.next
 
-            # Print the data in the node referenced by curNode.
-            print( curNode.data )
+        # Print the data in the node referenced by curNode.
+        print( curNode.data )
