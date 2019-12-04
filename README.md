@@ -1,18 +1,12 @@
 
 # Table of Contents
 
-1.  [Data-Structures-and-Algorithms-Using-Python](#org2367a9d)
-    1.  [contains](#orgb0da29f)
+1.  [contains](#org7758c95)
 
 
-<a id="org2367a9d"></a>
+<a id="org7758c95"></a>
 
-# Data-Structures-and-Algorithms-Using-Python
-
-
-<a id="orgb0da29f"></a>
-
-## contains
+# contains
 
 pdf lising example exercise note.
 
