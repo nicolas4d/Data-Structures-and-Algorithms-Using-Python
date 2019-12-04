@@ -122,4 +122,31 @@
 ** 10.5.1 Solving for Four-Queens
 ** 10.5.2 Designing a Solution
 * Exercises
+** 10.2
+   [[file:listing/fact.py]]
+** 10.3
+   [[file:listing/fib.py]]   
+** 10.4
+   [[file:listing/printListRecursion.py]]
+** 10.5
+   [[file:listing/recBinarySearch.py]]
+   have return
+** 10.6
+   [[file:exercise/recursiveExp.py]]
+** 10.8
+   [[file:exercise/factIterVersion.py]]
+** 10.9
+   [[file:exercise/10.9.py]]
+** 10.10
+   file:exercise/10.10.py
+** 10.11
+   \begin{equation}
+     \LARGE
+   a(n,r) = \frac{n!}{r!(n-r)!}
+   \end{equation}
+
+   n 0......n
+   r 0......n
+
+   [[file:exercise/10.11.py]]
 * Programming Projects

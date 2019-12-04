@@ -1,4 +1,5 @@
 # Compute the nth number in the Fibonacci sequence.
+# O(2^n)
 def fib( n ):
     assert n >= 1, "Fibonacci not defined for n < 1."
     if n == 1 :
