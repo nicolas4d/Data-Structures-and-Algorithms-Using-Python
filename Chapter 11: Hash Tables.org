@@ -1,0 +1,245 @@
+* ^
+  searching :
+  - determine an item is in the collection.
+  - adding new items to the collection and removing existing items.
+
+  The linear and binary search algorithms are both *comparison-based searches*.
+* 11.1 Introduction
+  *direct access* to the search keys. When searching for a key, we apply the
+  same mapping operation to determine the array element that contains the given
+  target.
+* 11.2 Hashing
+** ^
+   *Hashing* is the process of mapping a search key to a limited range of array
+   indices with the goal of providing direct access to the keys. The keys are
+   stored in an array called a *hash table* and a *hash function* is associated
+   with the table. The function converts or maps the search keys to specific
+   entries in the table.
+** 11.2.1 Linear Probing
+*** ^
+    *collision* which occurs when two or more keys map to the same hash location.
+
+    *linear probe* which examines the table entries in sequential order starting
+    with the first entry immediately following the original hash location.
+
+    [[file:figure/Figure 11.5: Resolving a collision for key 226 requires adding the key to the next slot.png][Resolving a collision for adding the key to the next slot]]
+*** Searching
+    [[file:figure/Figure 11.8: Searching the hash table: (a) a successful search for key 903 and (b) an unsuccessful search for key 561.png][Searching the hash table]]
+*** Deletions
+    [[file:figure/Figure 11.10: The correct way to delete a key from the hash table.png][delete a key from the hash table]]
+    The delta ∆ symbol is used to indicate a deleted entry.
+** 11.2.2 Clustering
+*** ^
+    As more keys are added to the hash table, more collisions are likely to
+    occur. Since each collision requires a linear probe to find the next
+    available slot, the keys begin to form clusters.
+
+    *primary clustering* occurs near the original hash position.
+*** Modified Linear Probe
+    When probing to find the next available slot, a loop is used to iterate
+    through the table entries. The order in which the entries are visited form a
+    *probe sequence*.
+
+    slot = (home + i) % M
+
+    - i :: is the i^th probe in the sequence, i = 1, 2, . . . M − 1.
+    - home :: is the home position, which is the index to which the key was
+              originally mapped by the hash function.
+    - M :: table of size. 
+
+    probe equation to some fixed constant c:
+
+    slot = (home + i ∗ c) % M
+
+    Any value can be used for the constant factor, but to ensure the probe
+    sequence includes all table entries, the constant factor c and the table
+    size must be relatively prime.
+*** Quadratic Probing
+    slot = (home + i^2 ) % M
+
+    *Secondary clustering* occurs when two keys map to the same table entry and
+    have the same probe sequence.
+*** Double Hashing
+    *double hashing* when a collision occurs, the key is hashed by a second
+    function and the result is used as the constant factor in the linear probe:
+
+    slot = (home + i ∗ hp(key)) % M
+    
+    hp(key) = 1 + key % P
+
+    P is some constant less than M.
+** 11.2.3 Rehashing
+   With a hash table, we create a new array larger than the original, but we
+   cannot simply copy the contents from the old array to the new one. Instead,
+   we have to rebuild or rehash the entire table by adding each key to the new
+   array as if it were a new key being added for the first time.
+
+   Experience has shown that hashing works best when the table is no more than
+   approximately *three quarters full*.
+
+   hash table is to be expanded, it should be done before the table becomes
+   full. The ratio between the number of keys in the hash table and the size of
+   the table is called the *load factor* . In practice, a hash table should be
+   expanded before the load factor reaches 80%.
+
+   The amount by which the table should be expanded can depend on the
+   application, but a good rule of thumb is to at least double its size. may be
+   able to simply double the size and add one, 2m + 1. Note that by adding one,
+   the resulting size will be an odd number, which results in fewer divisors for
+   the given table size. prime number is more better.
+** 11.2.4 Efficiency Analysis
+   The ultimate goal of hashing is to provide direct access to data items based
+   on the search keys in the hash table.
+
+   To evaluate the search performed in hashing, assume there are n elements
+   currently stored in the table of size m. requires O(m) time.
+
+   hashing is very efficient in the average case. The average case assumes the
+   keys are uniformly distributed throughout the table.
+
+   Given the load factor:
+   \begin{equation}
+   \LARGE
+     \alpha = \frac{n}{m} < 1
+   \end{equation}
+   When using a linear probe, the average number of comparisons required to
+   locate a key in the hash table for a successful search is:
+
+   \begin{equation}
+   \LARGE
+     \frac{1}{2} (1 + \frac{1} {(1 - \alpha)^2})
+   \end{equation}
+
+   and for an unsuccessful search:
+
+   \begin{equation}
+   \LARGE
+     \frac{1}{2} (1 + \frac{1} {(1 - \alpha)})
+   \end{equation}
+
+   When using a quadratic probe or double hashing, the average number of com-
+   parisons required to locate a key for a successful search is:
+
+   \begin{equation}
+   \LARGE
+   \frac{-log(1 - \alpha)}{\alpha}
+   \end{equation}
+
+   and for an unsuccessful search:
+
+   \begin{equation}
+      \LARGE
+      \frac{1}{(1 - \alpha)}
+      \end{equation}
+
+   [[file:table/Table 11.1: Average search times for both linear and quadratic probes.png][Average search times]]
+
+   O(1) when the load factor is between 1/2 and 2/3.
+* 11.3 Separate Chaining
+  To accommodate multiple keys, linked lists can be used to store the individual
+  keys that map to the same entry. The linked lists are commonly referred to as
+  *chains* and this technique of collision resolution is known as *separate
+  chaining*.
+
+  [[file:figure/Figure 11.15: Hash table using separate chaining.png][Hash table using separate chaining]]
+
+  Separate chaining is *open hashing* since the keys are stored outside the
+  table. The term *closed hashing* is used when the keys are stored within the
+  elements of the table.
+
+  it still requires attention since better key distribution can be achieved if
+  the table size is a *prime number*. In addition, if the table is too small,
+  the linked lists will grow larger with the addition of each new key. If the
+  list become too large, the table can be rehashed just as we did when using
+  closed hashing.
+
+  In the worst case, the list will contain all of the keys stored in the hash
+  table, resulting in a linear time search.
+
+  If the hash table contains n keys and m entries, the average list length is
+  *n/m* , which is the same as the *load factor*.
+
+  successful search is:
+  - 1 + α/2 
+  and for an unsuccessful search is:
+  - 1+ α
+
+  When the load factor is less than 2 (twice the number of keys as compared to
+  the number of table entries), it can be shown that the hash operations only
+  require O(1) time in the average case.
+* 11.4 Hash Functions
+** ^
+   There are several important guidelines to consider in designing or selecting
+   a hash function:
+   - The computation should be simple in order to produce quick results.
+   - The resulting index cannot be random. When a hash function is applied
+     multiple times to the same key, it must always return the same index value.
+   - If the key consists of multiple parts, every part should contribute in the
+     computation of the resulting index value.
+   - The table size should be a prime number, especially when using the modulus
+     operator. This can produce better distributions and fewer collisions as it
+     tends to reduce the number of keys that share the same divisor.
+** Division
+   divided by the size of the hash table with the remainder becoming the hash
+   table index: 
+   
+   h(key) = key % M
+** Truncation
+   For large integers, some columns in the key value are ignored and not used in
+   the computation of the hash table index.
+
+   4873152 would hash to index 812.
+** Folding
+   In this method, the key is split into multiple parts and then combined into a
+   single integer value by adding or multiplying the individual parts.
+
+   4873152 : 48 + 731 + 52 = 831.
+** Hashing Strings
+   - small hash tables:
+   sum the ASCII values of the individual characters:
+   
+   104 + 97 + 115 + 104 + 105 + 110 + 103 = 738
+
+   - larger tables:
+
+   \begin{equation}
+   \LARGE
+   s_0a^{n - 1} + s_1a^{n - 2} + ... + s_{n - 3}a^2 + s_{n - 2}a + s_{n - 1}
+   \end{equation}
+
+   - a is a non-zero constant
+   - s_i is the i^th element of the string
+   - n is the length of the string
+* 11.5 The HashMap Abstract Data Type
+** ^
+   One of the most common uses of a hash table is for the implementation of a
+   map. In fact, Python’s dictionary is implemented using a hash table with
+   closed hashing.
+
+   [[file:listing/hashmap.py]]
+** The Hash Table
+** Hash Functions
+   The main hash function for our implementation is defined as:
+
+   h(key) = |hash(key)| % M
+
+   while the second function for use with double hashing is defined as:
+
+   hp(key) = 1 + |hash(key)| % (M − 2)
+
+   To use objects of a user-defined class as keys in the dictionary, the class
+   must implement both the __hash__ and __eq__ methods. The hash method should
+   hash the contents of the object and return an integer that can be used by
+   either of our two hash functions, h() and hp(). The __eq__ is needed for the
+   equality comparison, which determines if the key stored in the given slot is
+   the target key.
+** Searching
+** Rehashing
+   new size is computed to be M ∗ 2 + 1, which ensures an odd value. A more
+   efficient solution would ensure the new size is always a prime number by
+   searching for the next prime number larger than M ∗ 2 + 1.
+* 11.6 Application: Histograms
+** 11.6.1 The Histogram Abstract Data Type
+** 11.6.2 The Color Histogram
+* Exercises
+* Programming Projects
