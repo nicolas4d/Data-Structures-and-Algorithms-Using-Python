@@ -197,4 +197,18 @@
     called dummy nodes because they contain no actual data. But they are part of
     the physical linked structure.
 * Exercises
+** 12.4
+   O(n^2) when already ordered list. 
+** 12.5
+   [[file:listing/mergeVirtualSeq.py]]
+   assume: left and right all n key.
+   each while O(n) then O(3n)
+   so O(n)
+** 12.6
+   each merge n.
+   all log n deep.
+   so O(n log n)
+** 12.7
+   A sorting algorithm is stable if it preserves the original order of duplicate
+   keys
 * Programming Projects
