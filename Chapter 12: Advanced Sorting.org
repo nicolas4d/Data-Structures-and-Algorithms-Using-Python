@@ -1,0 +1,200 @@
+* ^
+  Most sorting algorithms can be divided into two categories:
+  - comparison sort :: the data items can be arranged in either ascending or
+       descending order by performing pairwise logical comparisons between the
+       sort keys.
+  - distribution sort :: distributes or divides the sort keys into intermediate
+       groups or collections based on the individual key values.
+* 12.1 Merge Sort
+** ^
+   The merge sort algorithm uses the divide and conquer strategy to sort the
+   keys stored in a mutable sequence. The sequence of values is recursively
+   divided into smaller and smaller subsequences until each value is contained
+   within its own sub-sequences. The subsequences are then merged back together
+   to create a sorted sequence.
+** 12.1.1 Algorithm Description
+   [[file:figure/Figure%2012.1:%20Recursively%20splitting%20a%20list%20until%20each%20element%20is%20contained%20within%20its%20own%20list.png][splitting]] [[file:figure/Figure%2012.2:%20The%20sublists%20are%20merged%20back%20together%20to%20create%20a%20sorted%20list.png][merged back]]
+** 12.1.2 Basic Implementation
+   There are two major steps in the merge sort algorithm: 
+   1. dividing the list of values into smaller and smaller sub-lists.
+   2. merging the sublists back together to create a sorted list.
+
+   [[file:listing/pythonMergeSort.py]]
+
+   disadvantages:
+   - it relies on the use of the slice operation, which prevents us from using
+     the function to sort an array of values since the array structure does not
+     provide a slice operation.
+   - new physical sublists are created in each recursive call as the list is
+     subdivided.
+   - the sorted list is not contained within the same list originally passed to
+     the function.
+** 12.1.3 Improved Implementation
+   [[file:figure/Figure%2012.3:%20Splitting%20a%20list%20of%20values%20into%20two%20virtual%20sublists.png][Splitting a list of values into two virtual sublists.png]]
+
+   [[file:listing/recMergeSort.py]]
+
+   [[file:listing/mergeVirtualSeq.py]]
+
+   - temArray :: create a new array each time the function is called, which
+                 would then be deleted when the function terminates. But that
+                 requires additional overhead
+
+   - Wrapper Functions :: A wrapper function is a function that provides a
+        simpler and cleaner interface for another function and typically
+        provides little or no additional functionality. Wrapper functions are
+        commonly used with recursive functions that require additional arguments
+        since their initial invocation may not be as natural as an equivalent
+        sequential function.
+
+   [[file:listing/mergeSort.py]]
+** 12.1.4 Efficiency Analysis
+   Both implementations run in O(n log n) time.
+
+   the running time of a recursive function is computed by evaluating the time
+   required by each function invocation.
+
+   1. We can start by evaluating the time required for a single invocation of
+      the recMergeSort() function.
+
+      we let *m* represent the number of keys in the subsequence passed to the
+      current instance of the function (*n* represents the size of the entire
+      array)
+
+      The dividing step is also a constant time operation since it only requires
+      computing the midpoint to determine where the virtual sequence will be
+      split. *The real work is done in the conquering step by the
+      mergeVirtualLists() function*. This function requires O(m) time in the
+      worst case where m represents the total number of items in both
+      subsequences.
+
+      we can conclude that a single invocation of the recMergeSort() function
+      requires O(m) time given a subsequence of m keys.
+
+   2. The next step is to determine the total time required to execute all
+      invocations of the recursive function.
+
+      each invocation of the function, other than the initial call, only
+      processes a portion of the original key sequence, all n keys are processed
+      at each level.
+
+      [[file:figure/Figure 12.6: Time analysis of the merge sort algorithm.png]]
+* 12.2 Quick Sort
+** ^
+   The quick sort algorithm also uses the divide and conquer strategy. the quick
+   sort partitions the sequence by dividing it into two segments based on a
+   selected *pivot key*. In addition, the quick sort can be implemented to work
+   with virtual subsequences without the need for temporary storage.
+** 12.2.1 Algorithm Description
+   steps:
+   1. The first key is selected as the pivot, p. The pivot value is used to
+      partition the sequence into two segments or subsequences, L and G, such
+      that L contains all keys less than the p and G contains all keys greater
+      than or equal to p.
+   2. The algorithm is then applied recursively to both L and G. The recursion
+      continues until the base case is reached, which occurs when the sequence
+      contains fewer than two keys.
+   3. The two segments and the pivot value are merged to produce a sorted
+      sequence. This is accomplished by copying the keys from segment L back
+      into the original sequence, followed by the pivot value and then the keys
+      from segment G. After this step, the pivot key will end up in its proper
+      position within the sorted sequence.
+
+      [[file:figure/Figure%2012.7:%20An%20abstract%20view%20showing%20how%20quick%20sort%20partitions%20the%20sequence%20into%20segments%20based%20on%20the%20pivot%20value%20(shown%20with%20a%20gray%20background).png][An abstract view showing how quick sort partitions the sequence into
+      segments based on the pivot value (shown with a gray background)]]
+
+      [[file:figure/Figure%2012.8:%20An%20abstract%20showing%20how%20quick%20sort%20merges%20the%20sorted%20segments%20and%20pivot%20value%20back%20into%20the%20original%20sequence.png][An abstract showing how quick sort merges the sorted segments and pivot
+      value back into the original sequence]]
+** 12.2.2 Implementation
+   [[file:listing/quickSort.py]]
+
+   using the first or last key as the pivot is a poor choice especially when a
+   subsequence is already sorted that results in one of the segments being
+   empty. Choosing a key near the *middle* is a better choice that can be
+   implemented with a few modifications to the code provided.
+** 12.2.3 Efficiency Analysis
+   The quick sort algorithm has an average or expected time of O(n log n) but
+   runs in O(n^2) in the worst case.
+* 12.3 How Fast Can We Sort
+  The first three — bubble, selection, and insertion—have a worst case time of
+  O(n^2) while the merge sort has a worst case time of O(n log n). The quick
+  sort, the more commonly used algorithm in language libraries, is O(n^2) in the
+  worst case but it has an expected or average time of O(n log n). The natural
+  question is can we do better than O(n log n)? For a comparison sort, the
+  answer is no. It can be shown, with the use of a decision tree and examining
+  the permutations of all possible comparisons among the sort keys, that the
+  worst case time for a comparison sort can be no better than O(n log n).
+
+  This does not mean, however, that the sorting operation cannot be done faster
+  than O(n log n). It simply means that we cannot achieve this with a comparison
+  sort.
+* 12.4 Radix Sort
+** ^
+   Radix sort is a fast distribution sorting algorithm that orders keys by
+   examining the individual components of the keys instead of comparing the keys
+   themselves.
+
+   used to sort many types of keys, including positive integers, strings, and
+   floating-point values.
+
+   The radix sort algorithm also known as bin sort.
+** 12.4.1 Algorithm Description
+   [[file:figure/Figure%2012.9:%20Sorting%20an%20array%20of%20integer%20keys%20using%20the%20radix%20sort%20algorithm.png][Sorting an array of integer keys using the radix sort algorithm]]
+** 12.4.2 Basic Implementation
+   The radix sort is not a general purpose algorithm. Instead, it’s used in
+   special cases such as sorting records by zip code, Social Security number, or
+   product codes.
+
+   points related to the workings of the algorithm:
+   - The individual bins store groups of keys based on the individual digits.
+   - Keys with duplicate digits (in a given column) are stored in the same bin,
+     but following any that are already there.
+   - When the keys are gathered from the bins, they have to be stored back into
+     the original sequence. This is done by removing them from the bins in a
+     first-in first-out ordering.
+
+   [[file:listing/radixSort.py]]
+
+   we could easily have searched for the largest key value in the sequence and
+   then computed the number of digits in that value.
+** 12.4.3 Efficiency Analysis
+   assume:
+   - n :: a sequence of n keys
+   - d :: contains d components in the largest key value
+   - k :: each component contains a value between 0 and k −1.
+   
+   linked list implementation of the Queue ADT, which results in O(1) time queue
+   operations.
+
+   The array used to store the k queues and the creation of the queues
+   themselves can be done in O(k) time.
+
+   The distribution and gathering of the keys involves two steps, one for each
+   component:
+   - The distribution of the n keys across the k queues requires O(n) time.
+   - Gathering the n keys from the queues and placing them back into the sequence
+     requires O(n) time
+
+   The distribution and gathering steps are performed d times, resulting in a
+   time of O(dn). Combining this with the initialization step we have an overall
+   time of O(k + dn).
+
+   so O(n).
+* 12.5 Sorting Linked Lists
+** 12.5.1 Insertion Sort
+   [[file:listing/llistInsertionSort.py]]
+   
+   O(n^2) in the worst case.
+** 12.5.2 Merge Sort
+*** ^
+    [[file:listing/llistMergeSort.py]]
+*** Splitting the List
+*** Merging the Lists
+    O(n log n)
+
+    *Dummy Nodes* A dummy node is a temporary node that is used to simplify link
+    modifications when adding or removing nodes from a linked list. They are
+    called dummy nodes because they contain no actual data. But they are part of
+    the physical linked structure.
+* Exercises
+* Programming Projects
