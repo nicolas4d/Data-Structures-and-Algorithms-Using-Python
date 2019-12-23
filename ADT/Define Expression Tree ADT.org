@@ -1,0 +1,13 @@
+* Define Expression Tree ADT
+An expression tree is a binary tree representation of an arithmetic expression
+that consists of various operators (+, -, *, /, %) and operands comprised of
+single integer digits and single-letter variables within a fully parenthesized
+expression.
+
+- ExpressionTree( expStr ): Builds an expression tree for the expression given
+  in expStr. Assume the string contains a valid, fully parenthesized expression.
+- evaluate( varDict ): Evaluates the expression tree and returns the numeric
+  result. The values of the single-letter variables are extracted from the
+  supplied dictionary structure. An exception is raised if there is a division
+  by zero error or an undefined variable is used.
+- toString (): Constructs and returns a string representation of the expression.

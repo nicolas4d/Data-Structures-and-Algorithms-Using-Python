@@ -1,0 +1,228 @@
+* ^
+ we explore the tree data structure, which can be used to arrange data in a
+  hierarchical order
+* 13.1 The Tree Structure
+** ^
+   A tree structure consists of *nodes* and *edges* that organize data in a
+   hierarchical fashion. The data elements are stored in nodes and pairs of
+   nodes are connected by edges. The edges represent the relationship between
+   the nodes that are linked with arrows or directed edges to form a
+   hierarchical structure resembling an upside-down tree complete with branches,
+   leaves, and even a root.
+** Root
+   The topmost node of the tree is known as the root node.
+** Path
+   The nodes encountered when following the edges from a starting node to a
+   destination form a path.
+** Parent 
+   Every node, except the root, has a parent node, which is identified by the
+   incoming edge. A node can have only one parent (or incoming edge) resulting
+   in a unique path from the root to any other node in the tree.
+** Children
+   Each node can have one or more child nodes resulting in a parent-child
+   hierarchy.
+
+   All nodes that have the same parent are known as *siblings*, but there is no
+   direct access between siblings.
+** Nodes
+   Nodes that have at least one child are known as *interior* nodes while nodes
+   that have no children are known as *leaf* nodes.
+** Subtree
+   A tree is by definition a recursive structure. Every node can be the root of
+   its own subtree, which consists of a subset of nodes and edges of the larger
+   tree.
+** Relatives
+   All of the nodes in a subtree are descendants of the subtree’s root.
+
+   The ancestors of a node include the parent of the node, its grandparent, its
+   great-grandparent, and so on all the way up to the root.
+* 13.2 The Binary Tree
+** ^
+   A *binary tree* is a tree in which each node can have at *most two children*.
+   One child is identified as the *left child* and the other as the *right
+   child*.
+** 13.2.1 Properties
+*** ^
+    The shapes vary depending on the number of nodes and how the nodes are
+    linked.
+*** Tree Size
+    The nodes in a binary tree are organized into levels with the root node at
+    level 0.
+
+    The root node always occupies level zero.
+
+    The *depth* of a node is its distance from the root, with distance being the
+    number of levels that separate the two.
+
+    The *height* of a binary tree is the number of levels in the tree.
+
+    The *width* of a binary tree is the number of nodes on the level containing
+    the most nodes.
+
+    the *size* of a binary tree is simply the number of nodes in the tree.
+
+    A binary tree of size n can have a maximum height of n, which results when
+    there is one node per level
+
+    What is the minimum height of a binary tree with n nodes?
+
+    This corresponds to a given tree level i having a capacity for 2^i nodes. If
+    we sum the size of each level, when all of the levels are filled to
+    capacity, except possibly the last one, we find that the minimum height of a
+    binary tree of size n is log_2 n + 1
+*** Tree Structure
+    A *full binary* tree is a binary tree in which each interior node contains two
+    children.
+
+    A *perfect binary* tree is a full binary tree in which all leaf nodes are at the
+    same level.
+
+    A binary tree of height h is a *complete binary tree* if it is a perfect binary
+    tree down to height h − 1 and the nodes on the lowest level fill the available
+    slots from left to right leaving no gaps.
+** 13.2.2 Implementation
+   Trees are generally illustrated as abstract structures with the nodes
+   represented as circles or boxes and the edges as lines or arrows.
+
+   [[file:listing/_BinTreeNode.py]]
+** 13.2.3 Tree Traversals
+*** Preorder Traversal
+    first visit the node followed by the subtree traversals.
+
+    [[file:figure/Figure%2013.12:%20The%20logical%20ordering%20of%20the%20nodes%20with%20a%20preorder%20traversal.png][The logical ordering of the nodes with a preorder traversal]]
+
+    [[file:listing/preorderTrav.py]]
+
+    If the visit operation only requires constant time, the tree traversal can
+    be done in O(n).
+*** Inorder Traversal
+    first traverse the left subtree and then visit the node followed by the
+    traversal of the right subtree.
+
+    [[file:figure/Figure%2013.13:%20The%20logical%20ordering%20of%20the%20nodes%20with%20an%20inorder%20traversal.png][The logical ordering of the nodes with an inorder traversal]]
+
+    [[file:listing/inorderTrav.py]]
+*** Postorder Traversal
+    the left and right subtrees of each node are traversed before the node is
+    visited.
+
+    [[file:listing/postorderTrav.py]]
+
+    [[file:figure/Figure%2013.14:%20The%20logical%20ordering%20of%20the%20nodes%20with%20a%20postorder%20traversal.png][logical ordering of the nodes with a postorder traversal]]
+*** Breadth-First Traversal
+    - depth-first traversal :: the nodes are traversed deeper in the tree before
+         returning to higher-level nodes.
+    - breadth-first traversal :: the nodes are visited by level, from left to
+         right.
+
+    [[file:figure/Figure%2013.15:%20The%20logical%20ordering%20of%20the%20nodes%20with%20a%20breadth-first%20traversal.png][The logical ordering of the nodes with a breadth-first traversal]]
+
+    [[file:listing/breadthFirstTrav.py]]
+* 13.3 Expression Trees
+** 13.3.1 Expression Tree Abstract Data Type
+   [[file:ADT/Define Expression Tree ADT.org]]
+
+   [[file:example/use of expression tree.py]]
+
+   [[file:listing/exptree.py]]
+** 13.3.2 String Representation
+   inorder traversal produces the correct ordering of operators and operands for
+   the resulting expression.
+
+   [[file:figure/Figure%2013.18:%20Expression%20tree%20with%20braces%20grouping%20the%20subtrees.png][Expression tree with braces grouping the subtrees]]
+
+   [[file:listing/exptree.py]]
+** 13.3.3 Tree Evaluation
+   [[file:listing/exptree.py]]
+** 13.3.4 Tree Construction
+   [[file:figure/Figure%2013.20:%20Steps%20for%20building%20an%20expression%20tree%20for%20((2%20%E2%88%97%207)%20+%208).png][Steps for building an expression tree for ((2 ∗ 7) + 8)]]
+* 13.4 Heaps
+** ^
+   heap is a complete binary tree in which the nodes are organized based on
+   their data entry values.
+   - max-heap has the property, known as the heap order property , that for each
+     non-leaf node V , the value in V is greater than the value of its two
+     children.
+   - min-heap has the opposite property. For each non-leaf node V , the value in
+     V is smaller than the value of its two children.
+
+     
+   [[file:figure/Figure%2013.21:%20Examples%20of%20a%20heap.png][Examples of a heap]]
+** 13.4.1 Definition
+*** ^
+    The heap is a specialized structure with limited operations. We can insert a
+    new value into a heap or extract and remove the root node’s value from the
+    heap.
+*** Insertions
+    When a new value is inserted into a heap, the heap order property and the
+    *heap shape property* (a complete binary tree) must be maintained.
+
+    we can start at the bottom and work our way up.
+
+    To restore the heap order property, the new value has to move up along the
+    path in reverse order from the root to the insertion point until a node is
+    found where it can be positioned properly. This operation is known as a
+    *sift-up*. It can also be known as an up-heap, bubble-up, percolate-up, or
+    heapify-up, among others.
+
+    [[file:figure/Figure%2013.23:%20The%20steps%20to%20insert%20value%2090%20into%20the%20heap.png][The steps to insert value 90 into the heap]]
+*** Extractions
+    When a value is extracted and removed from the heap, it can only come from
+    the root node.
+
+    After the value in the root has been removed, the binary tree is no longer a
+    heap since there is now a gap in the root node,
+
+    [[file:figure/Figure%2013.26:%20The%20steps%20in%20restoring%20a%20max-heap%20after%20extracting%20the%20root%20value.png][The steps in restoring a max-heap after extracting the root value]]
+** 13.4.2 Implementation
+*** ^
+    While a heap is a binary tree, it’s seldom, if ever, implemented as a
+    dynamic linked structure due to the need of navigating the tree both
+    top-down and bottom-up. Instead, we can implement a heap using an array or
+    vector to physically store the individual nodes with implicit links between
+    the nodes.
+
+    [[file:figure/Figure%2013.27:%20A%20heap%20can%20be%20implemented%20using%20an%20array%20or%20vector.png][A heap can be implemented using an array or vector]]
+*** Node Access
+    Given the array index i of a node:
+
+    #+begin_src python
+    parent = (i-1) // 2
+    left = 2 * i + 1
+    right = 2 * i + 2
+    #+end_src
+
+    Determining if a node’s child link is null is simply a matter of computing
+    the index of the appropriate child and testing to see if the index is out of
+    range.
+*** Class Definition
+    [[file:listing/arrayheap.py]]
+
+    Inserting an item into a heap implemented as an array requires O(log n) time
+    in the worst case.
+
+    Extracting an item from a heap implemented as an array also requires O(log
+    n) time in the worst case,
+** 13.4.3 The Priority Queue Revisited
+   [[file:figure/Figure%2013.29:%20Contents%20of%20the%20heap%20used%20in%20the%20implementation%20of%20a%20priority%20queue.png][Contents of the heap used in the implementation of a priority queue]]
+
+   [[file:table/Table%2013.1:%20Time-complexities%20for%20various%20implementations%20of%20the%20bounded%20priority%20queue.png][Time-complexities for various implementations of the bounded priority queue]]
+* 13.5 Heapsort
+** ^
+   The heapsort algorithm builds a heap from a sequence of unsorted values and
+   then extracts the items from the heap to create a sorted sequence.
+** 13.5.1 Simple Implementation
+   [[file:listing/simpleHeapSort.py]]
+
+   The heapsort algorithm is very efficient and only requires O(n log n) time in
+   the worst case. The construction of the heap requires O(n log n) time since
+   there are n items in the sequence and each call to add() requires log n time.
+   Extracting the values from the heap and storing them into the sequence
+   structure also requires O(n log n) time.
+** 13.5.2 Sorting In Place
+   [[file:listing/heapsort.py]]
+* 13.6 Application: Morse Code
+** 13.6.1 Decision Trees
+** 13.6.2 The ADT Definition
+* Exercises
+* Programming Projects
