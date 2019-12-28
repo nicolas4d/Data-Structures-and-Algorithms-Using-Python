@@ -1,0 +1,148 @@
+* ^
+  The tree structure can be used to organize dynamic data in a hierarchical
+  fashion. When used for searching, each node contains a search key as part of
+  its data entry (sometimes called the *payload*) and the nodes are organized
+  based on the relationship between the keys. But the primary goal of all search
+  trees is to provide an efficient search operation for quickly locating a
+  specific item contained in the tree.
+* 14.1 The Binary Search Tree
+** ^
+   A binary search tree (BST) is a binary tree in which each node contains a
+   search key within its payload and the tree is structured such that for each
+   interior node V :
+   - All keys less than the key in node V are stored in the left subtree of V.
+   - All keys greater than the key in node V are stored in the right subtree of
+     V.
+
+     
+   [[file:figure/Figure%2014.1:%20A%20binary%20search%20tree%20storing%20integer%20search%20keys.png][A binary search tree storing integer search keys]]
+
+   [[file:listing/BSTMap.py]]
+** 14.1.1 Searching
+   [[file:figure/Figure%2014.2:%20The%20structure%20of%20a%20binary%20search%20tree%20is%20based%20on%20the%20search%20keys.png][The structure of a binary search tree is based on the search keys]]
+** 14.1.2 Min and Max Values
+   [[file:figure/Figure%2014.4:%20Finding%20the%20minimum%20or%20maximum%20key%20in%20a%20binary%20search%20tree.png][Finding the minimum or maximum key in a binary search tree]]
+** 14.1.3 Insertions
+   [[file:figure/Figure%2014.6:%20Inserting%20a%20new%20node%20into%20a%20binary%20search%20tree.png][Inserting a new node into a binary search tree]]
+** 14.1.4 Deletions
+*** Removing a Leaf Node
+    [[file:figure/Figure%2014.8:%20Removing%20a%20leaf%20node%20from%20a%20binary%20search%20tree.png][Removing a leaf node from a binary search tree]]
+*** Removing an Interior Node with One Child
+    [[file:figure/Figure%2014.10:%20Removing%20an%20interior%20node%20(41)%20with%20one%20child.png][Removing an interior node (41) with one child]]
+*** Removing an Interior Node with Two Children
+    1. Find the logical successor, S, of the node to be deleted, N .
+    2. Copy the key from node S to node N .
+    3. Remove node S from the tree.
+
+       
+    [[file:figure/Figure%2014.13:%20The%20steps%20in%20removing%20a%20key%20from%20a%20binary%20search%20tree.png][The steps in removing a key from a binary search tree]]
+** 14.1.5 Efficiency of Binary Search Trees
+   [[file:table/Table%2014.1:%20Time-complexities%20for%20the%20binary%20search%20tree%20operations.png][Time-complexities for the binary search tree operations]]
+* 14.2 Search Tree Iterators
+* 14.3 AVL Trees
+** ^
+*** ^
+    binary tree is *balanced* if the heights of the left and right subtrees of
+    every node differ by at most 1.
+    
+    [[file:figure/Figure%2014.14:%20Examples%20of%20balanced%20binary%20search%20trees.png][Examples of balanced binary search trees]]
+
+    With each node in an AVL tree, we associate a *balance factor*, which
+    indicates the height difference between the left and right branch. The
+    balance factor can be one of three states:
+    - left high :: When the left subtree is higher than the right subtree.
+    - equal high :: When the two subtrees have equal height.
+    - right high :: When the right subtree is higher than the left subtree.
+
+
+    By maintaining a balanced tree, we ensure its height never exceeds 1.44 log
+    n. This height is sufficient for providing O(log n) time operations even in
+    the worst case.
+
+    [[file:figure/Figure%2014.16:%20An%20insertion%20that%20causes%20the%20AVL%20tree%20to%20become%20unbalanced.png][An insertion that causes the AVL tree to become unbalanced]]
+** 14.3.1 Insertions
+*** Rotations
+    Multiple subtrees can become unbalanced after inserting a new key, all of
+    which have roots along the insertion path. But only one will have to be
+    rebalanced: the one deepest in the tree and closest to the new node. After
+    inserting the key, the balance factors are adjusted during the unwinding of
+    the recursion. The first subtree encountered that is out of balance has to
+    be rebalanced. The root node of this subtree is known as the *pivot node*.
+
+    An AVL subtree is rebalanced by performing a *rotation* around the pivot node.
+
+    - Case 1:
+      [[file:figure/Figure%2014.17:%20Case%201:%20a%20right%20rotation%20of%20the%20pivot%20node%20over%20its%20left%20child.png][Case 1: a right rotation of the pivot node over its left child]]
+    - Case 2:
+      [[file:figure/Figure%2014.18:%20Case%202:%20a%20double%20rotation%20with%20the%20pivot%E2%80%99s%20left%20child%20rotated%20left%20over%20its%20right%20child%20and%20the%20pivot%20rotated%20right%20over%20its%20left%20child.png][Case 2: a double rotation]]
+    - Cases 3 (top) and 4 (bottom) are mirror images of cases 1 and 2
+      [[file:figure/Figure%2014.19:%20Cases%203%20(top)%20and%204%20(bottom)%20are%20mirror%20images%20of%20cases%201%20and%202.png][Cases 3 (top) and 4 (bottom) are mirror images of cases 1 and 2]]
+*** New Balance Factors
+    [[file:table/Table%2014.2:%20The%20new%20balance%20factors%20for%20the%20nodes%20after%20a%20rotation.png][The new balance factors for the nodes after a rotation]]
+** 14.3.2 Deletions
+   When a subtree is rebalanced due to a deletion, it can cause the ancestors of
+   the subtree to then become unbalanced. This effect can ripple up all the way
+   to the root node. So, all of the nodes along the path have to be evaluated
+   and rebalanced if necessary.
+** 14.3.3 Implementation
+   [[file:listing/avltree.py]]
+* 14.4 The 2-3 Tree
+** ^
+   2-3 tree is a multi-way search tree that can have up to three children. It
+   provides fast operations that are easy to implement.
+   
+   [[file:figure/Figure%2014.22:%20A%202-3%20tree%20with%20integer%20search%20keys.png][A 2-3 tree with integer search keys]]
+
+   A 2-3 tree is a search tree that is always balanced and whose shape and
+   structure is defined as follows:
+   - Every node has capacity for one or two keys (and their corresponding payload),
+     which we term key one and key two.
+   - Every node has capacity for up to three children, which we term the left,
+     middle, and right child.
+   - All leaf nodes are at the same level.
+   - Every internal node must contains two or three children. If the node has
+     one key, it must contain two children; if it has two keys, it must contain
+     three children.
+     
+     
+   2-3 tree has a search property:
+   - All keys less than the first key of node V are stored in the left subtree
+     of V .
+   - If the node has two children, all keys greater than the first key of node V
+     are stored in the middle subtree of V .
+   - If the node has three children: (1) all keys greater than the first key of
+     node V but less than the second key are stored in the middle subtree of V ;
+     and (2) all keys greater than the second key are stored in the right
+     subtree.
+
+
+   [[file:figure/Figure%2014.23:%20A%20search%20property%20of%20a%202-3%20tree.png.png][A search property of a 2-3 tree]]
+
+   [[file:listing/23TreeNode.py]]
+** 14.4.1 Searching
+   [[file:listing/tree23Map.py]]
+** 14.4.2 Insertions
+*** ^
+    [[file:figure/Figure%2014.25:%20Inserting%20key%2084%20into%20a%202-3%20tree%20with%20space%20available%20in%20the%20leaf%20node.png][Inserting key 84 into a 2-3 tree with space available in the leaf node]]
+
+    [[file:figure/Figure%2014.26:%20Inserting%20key%2026%20into%20a%202-3%20tree%20with%20space%20available%20in%20the%20leaf%20node.png][Inserting key 26 into a 2-3 tree with space available in the leaf node]]
+*** Splitting a Leaf Node
+    [[file:figure/Figure%2014.28:%20Splitting%20a%20leaf%20node%20into%20two%20nodes:%20each%20node%20gets%20one%20key%20and%20one%20key.png][Splitting a leaf node into two nodes]]
+
+    [[file:figure/Figure%2014.29:%20Inserting%20the%20promoted%20key%20and%20reference%20into%20a%20parent%20with%20one%20key.png][Inserting the promoted key and reference into a parent with one key]]
+*** Splitting a Parent Node
+    [[file:figure/Figure%2014.31:%20Inserting%20the%20promoted%20key%20and%20reference%20into%20a%20full%20parent%20node.png][Inserting the promoted key and reference into a full parent node]]
+*** Splitting the Root Node
+    [[file:figure/Figure%2014.32:%20Splitting%20the%20root%20node%20is%20a%20special%20case.png][Splitting the root node is a special case]]
+*** Implementation
+    [[file:listing/tree23Map.py]]
+** 14.4.3 Efficiency of the 2-3 Tree
+   The traversal operation must visit every node in the 2-3 tree resulting in a
+   worst case time of O(n).
+
+   Since the maximum height of a 2-3 tree is log n, the search operation will
+   take no more log n comparisons, resulting in a worst case time of O(log n).
+
+   the worst case time of an insertion is also O(log n).
+* Exercises
+* Programming Projects
