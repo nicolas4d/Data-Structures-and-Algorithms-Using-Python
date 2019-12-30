@@ -68,7 +68,6 @@ class AVLMap :
     def _avlLeftBalance( self, pivot ):
         # Set L to point to the left child of the pivot.
         L = pivot.left
-
         C = pivot.left
 
         # See if the rebalancing is due to case 1.

@@ -78,6 +78,17 @@
     - Cases 3 (top) and 4 (bottom) are mirror images of cases 1 and 2
       [[file:figure/Figure%2014.19:%20Cases%203%20(top)%20and%204%20(bottom)%20are%20mirror%20images%20of%20cases%201%20and%202.png][Cases 3 (top) and 4 (bottom) are mirror images of cases 1 and 2]]
 *** New Balance Factors
+    The new balance factor of a node depends on its current balance factor and
+    the subtree into which the new node was inserted. The resulting balance
+    factors are provided here:
+
+    [[file:figure/new%20balance%20factors.png][new balance factors]]
+
+    The balance factor settings in cases 2 and 4 depend on the balance factor of
+    the original pivot nodes grandchild (the right child of node L or the left
+    child of node R).
+
+
     [[file:table/Table%2014.2:%20The%20new%20balance%20factors%20for%20the%20nodes%20after%20a%20rotation.png][The new balance factors for the nodes after a rotation]]
 ** 14.3.2 Deletions
    When a subtree is rebalanced due to a deletion, it can cause the ancestors of
